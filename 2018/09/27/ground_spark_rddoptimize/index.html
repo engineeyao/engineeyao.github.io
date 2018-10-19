@@ -123,18 +123,18 @@
 
 
 
-  <meta name="description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 第一种int main() {     printf(&amp;">
+  <meta name="description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
 <meta name="keywords" content="spark,大数据,数据开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spark的优化心得-【参数篇】">
+<meta property="og:title" content="spark的优化心得 -【参数篇】">
 <meta property="og:url" content="https://engineeyao.github.io/2018/09/27/ground_spark_rddoptimize/index.html">
 <meta property="og:site_name" content="码农的南园子">
-<meta property="og:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 第一种int main() {     printf(&amp;">
+<meta property="og:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-30T07:37:08.032Z">
+<meta property="og:updated_time" content="2018-10-17T07:19:18.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spark的优化心得-【参数篇】">
-<meta name="twitter:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 第一种int main() {     printf(&amp;">
+<meta name="twitter:title" content="spark的优化心得 -【参数篇】">
+<meta name="twitter:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>spark的优化心得-【参数篇】 | 码农的南园子</title>
+  <title>spark的优化心得 -【参数篇】 | 码农的南园子</title>
   
 
 
@@ -347,7 +347,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
         
         
-          <h1 class="post-title" itemprop="name headline">spark的优化心得-【参数篇】
+          <h1 class="post-title" itemprop="name headline">spark的优化心得 -【参数篇】
               
             
           </h1>
@@ -389,7 +389,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-30 15:37:08" itemprop="dateModified" datetime="2018-09-30T15:37:08+08:00">2018-09-30</time>
+                <time title="Modified: 2018-10-17 15:19:18" itemprop="dateModified" datetime="2018-10-17T15:19:18+08:00">2018-10-17</time>
               
             
           </span>
@@ -448,7 +448,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
       
         <p>spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。</p>
-<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><pre><code>int main()
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>首先认为</p>
+<pre><code>int main()
 {
     printf(&quot;我是个段落代码块&quot;);
     return 0;
@@ -537,8 +538,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/23/importantEnglish/" rel="next" title="英语，一个早晚要还的债">
-                <i class="fa fa-chevron-left"></i> 英语，一个早晚要还的债
+              <a href="/2018/09/23/english_ef7/" rel="next" title="EF经典句子【level7】">
+                <i class="fa fa-chevron-left"></i> EF经典句子【level7】
               </a>
             
           </div>
@@ -546,6 +547,10 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/12/life_think_stock/" rel="prev" title="股票给我上的课">
+                股票给我上的课 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -619,7 +624,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -689,9 +694,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -741,7 +744,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种"><span class="nav-number">1.</span> <span class="nav-text">第一种</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第史蒂夫"><span class="nav-number">2.</span> <span class="nav-text">第史蒂夫</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第史蒂夫"><span class="nav-number">2.</span> <span class="nav-text">第史蒂夫</span></a></li></ol></div>
             
 
           </div>
