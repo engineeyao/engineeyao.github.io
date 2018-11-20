@@ -123,25 +123,25 @@
 
 
 
-  <meta name="description" content="Unit1用userd to+动词 谈论过去的习惯或者偏好  Ted used to watch cartoons,but now he listen to music.用be userd to+名词谈论你已经习惯的事物 Mark is used to loud music.He was in a rock band.">
-<meta name="keywords" content="英语,ef经典句子">
+  <meta name="description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
+<meta name="keywords" content="spark,大数据,数据开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EF经典句子【level9】">
-<meta property="og:url" content="https://engineeyao.github.io/2018/10/23/english_ef9/index.html">
+<meta property="og:title" content="spark的优化心得 -【参数篇】">
+<meta property="og:url" content="https://engineeyao.github.io/2018/11/20/ground_spark_rddoptimize/index.html">
 <meta property="og:site_name" content="码农的南园子">
-<meta property="og:description" content="Unit1用userd to+动词 谈论过去的习惯或者偏好  Ted used to watch cartoons,but now he listen to music.用be userd to+名词谈论你已经习惯的事物 Mark is used to loud music.He was in a rock band.">
+<meta property="og:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-23T00:57:45.957Z">
+<meta property="og:updated_time" content="2018-11-20T09:15:19.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EF经典句子【level9】">
-<meta name="twitter:description" content="Unit1用userd to+动词 谈论过去的习惯或者偏好  Ted used to watch cartoons,but now he listen to music.用be userd to+名词谈论你已经习惯的事物 Mark is used to loud music.He was in a rock band.">
+<meta name="twitter:title" content="spark的优化心得 -【参数篇】">
+<meta name="twitter:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
 
 
 
 
 
 
-  <link rel="canonical" href="https://engineeyao.github.io/2018/10/23/english_ef9/"/>
+  <link rel="canonical" href="https://engineeyao.github.io/2018/11/20/ground_spark_rddoptimize/"/>
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>EF经典句子【level9】 | 码农的南园子</title>
+  <title>spark的优化心得 -【参数篇】 | 码农的南园子</title>
   
 
 
@@ -330,7 +330,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://engineeyao.github.io/2018/10/23/english_ef9/">
+    <link itemprop="mainEntityOfPage" href="https://engineeyao.github.io/2018/11/20/ground_spark_rddoptimize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="duke.yao">
@@ -347,7 +347,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
         
         
-          <h1 class="post-title" itemprop="name headline">EF经典句子【level9】
+          <h1 class="post-title" itemprop="name headline">spark的优化心得 -【参数篇】
               
             
           </h1>
@@ -372,7 +372,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 
               
 
-              <time title="Created: 2018-10-23 19:14:14 / Modified: 08:57:45" itemprop="dateCreated datePublished" datetime="2018-10-23T19:14:14+08:00">2018-10-23</time>
+              <time title="Created: 2018-11-20 19:14:14 / Modified: 17:15:19" itemprop="dateCreated datePublished" datetime="2018-11-20T19:14:14+08:00">2018-11-20</time>
             
 
             
@@ -394,14 +394,14 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/英语/" itemprop="url" rel="index"><span itemprop="name">英语</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/种地经验/" itemprop="url" rel="index"><span itemprop="name">种地经验</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/英语/句子才是精华/" itemprop="url" rel="index"><span itemprop="name">句子才是精华</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/种地经验/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
 
                 
                 
@@ -435,22 +435,32 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
       
 
       
-        <h2 id="Unit1"><a href="#Unit1" class="headerlink" title="Unit1"></a>Unit1</h2><p><strong><em>用userd to+动词 谈论过去的习惯或者偏好</em></strong></p>
-<ol>
-<li>Ted used to watch cartoons,but now he listen to music.<br><strong><em>用be userd to+名词谈论你已经习惯的事物</em></strong></li>
-<li>Mark is used to loud music.He was in a rock band.<a id="more"></a>
-</li>
-</ol>
-<p><strong><em>讨论在线服务</em></strong></p>
-<ol start="3">
-<li>What kind of service is it?</li>
-<li>It’s <strong>a monthly subscription</strong>.</li>
-<li>You can get <strong>a 30-day free trial</strong>.</li>
-<li>It’s a streaming only,but it’s <strong>unlimited content</strong>.</li>
-<li>What about the quality?</li>
-<li>It’ll recommend new music for you.</li>
-</ol>
-
+        <p>spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。</p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>首先认为</p>
+<pre><code>int main()
+{
+    printf(&quot;我是个段落代码块&quot;);
+    return 0;
+}
+</code></pre><a id="more"></a>
+<h4 id="第史蒂夫"><a href="#第史蒂夫" class="headerlink" title="第史蒂夫"></a>第史蒂夫</h4><pre><code>private def loadEnvironmentArguments(): Unit = {
+  master = Option(master)
+    .orElse(sparkProperties.get(&quot;spark.master&quot;))
+    .orElse(env.get(&quot;MASTER&quot;))
+    .orNull
+  driverExtraClassPath = Option(driverExtraClassPath)
+    .orElse(sparkProperties.get(&quot;spark.driver.extraClassPath&quot;))
+    .orNull
+  driverExtraJavaOptions = Option(driverExtraJavaOptions)
+    .orElse(sparkProperties.get(&quot;spark.driver.extraJavaOptions&quot;))
+    .orNull
+  driverExtraLibraryPath = Option(driverExtraLibraryPath)
+    .orElse(sparkProperties.get(&quot;spark.driver.extraLibraryPath&quot;))
+    .orNull
+  driverMemory = Option(driverMemory)
+    .orElse(sparkProperties.get(&quot;spark.driver.memory&quot;))
+    .orElse(env.get(&quot;SPARK_DRIVER_MEMORY&quot;))
+</code></pre>
       
     </div>
 
@@ -499,9 +509,11 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
       
         <div class="post-tags">
           
-            <a href="/tags/英语/" rel="tag"># 英语</a>
+            <a href="/tags/spark/" rel="tag"># spark</a>
           
-            <a href="/tags/ef经典句子/" rel="tag"># ef经典句子</a>
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/数据开发/" rel="tag"># 数据开发</a>
           
         </div>
       
@@ -514,8 +526,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/12/life_think_personality/" rel="next" title="急性子的性格bug">
-                <i class="fa fa-chevron-left"></i> 急性子的性格bug
+              <a href="/2018/10/23/english_ef9/" rel="next" title="EF经典句子【level9】">
+                <i class="fa fa-chevron-left"></i> EF经典句子【level9】
               </a>
             
           </div>
@@ -523,10 +535,6 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/20/ground_spark_rddoptimize/" rel="prev" title="spark的优化心得 -【参数篇】">
-                spark的优化心得 -【参数篇】 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -720,7 +728,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unit1"><span class="nav-number">1.</span> <span class="nav-text">Unit1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第史蒂夫"><span class="nav-number">2.</span> <span class="nav-text">第史蒂夫</span></a></li></ol></div>
             
 
           </div>
