@@ -123,25 +123,25 @@
 
 
 
-  <meta name="description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
-<meta name="keywords" content="spark,大数据,数据开发">
+  <meta name="description" content="股票我人生的关键词近两年，随着工作内容由撸码到管理，越来越感觉自己的视野和性格是有bug的。因此在拼命的去思考和看书。我今天首先说一下我一个比较鲜明的性格特点，急性子。">
+<meta name="keywords" content="姚式鸡汤">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spark的优化心得 -【参数篇】">
-<meta property="og:url" content="https://engineeyao.github.io/2018/09/27/ground_spark_rddoptimize/index.html">
+<meta property="og:title" content="急性子的性格bug">
+<meta property="og:url" content="https://engineeyao.github.io/2018/10/12/life_think_personality/index.html">
 <meta property="og:site_name" content="码农的南园子">
-<meta property="og:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
+<meta property="og:description" content="股票我人生的关键词近两年，随着工作内容由撸码到管理，越来越感觉自己的视野和性格是有bug的。因此在拼命的去思考和看书。我今天首先说一下我一个比较鲜明的性格特点，急性子。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-17T07:19:18.413Z">
+<meta property="og:updated_time" content="2018-11-20T09:07:20.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spark的优化心得 -【参数篇】">
-<meta name="twitter:description" content="spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。 基本概念首先认为 int main() {     pr">
+<meta name="twitter:title" content="急性子的性格bug">
+<meta name="twitter:description" content="股票我人生的关键词近两年，随着工作内容由撸码到管理，越来越感觉自己的视野和性格是有bug的。因此在拼命的去思考和看书。我今天首先说一下我一个比较鲜明的性格特点，急性子。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://engineeyao.github.io/2018/09/27/ground_spark_rddoptimize/"/>
+  <link rel="canonical" href="https://engineeyao.github.io/2018/10/12/life_think_personality/"/>
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>spark的优化心得 -【参数篇】 | 码农的南园子</title>
+  <title>急性子的性格bug | 码农的南园子</title>
   
 
 
@@ -330,7 +330,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://engineeyao.github.io/2018/09/27/ground_spark_rddoptimize/">
+    <link itemprop="mainEntityOfPage" href="https://engineeyao.github.io/2018/10/12/life_think_personality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="duke.yao">
@@ -347,7 +347,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
         
         
-          <h1 class="post-title" itemprop="name headline">spark的优化心得 -【参数篇】
+          <h1 class="post-title" itemprop="name headline">急性子的性格bug
               
             
           </h1>
@@ -372,7 +372,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 
               
 
-              <time title="Created: 2018-09-27 19:14:14" itemprop="dateCreated datePublished" datetime="2018-09-27T19:14:14+08:00">2018-09-27</time>
+              <time title="Created: 2018-10-12 19:14:14" itemprop="dateCreated datePublished" datetime="2018-10-12T19:14:14+08:00">2018-10-12</time>
             
 
             
@@ -389,7 +389,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-17 15:19:18" itemprop="dateModified" datetime="2018-10-17T15:19:18+08:00">2018-10-17</time>
+                <time title="Modified: 2018-11-20 17:07:20" itemprop="dateModified" datetime="2018-11-20T17:07:20+08:00">2018-11-20</time>
               
             
           </span>
@@ -406,14 +406,14 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/种地经验/" itemprop="url" rel="index"><span itemprop="name">种地经验</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/种地经验/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/我的思考/" itemprop="url" rel="index"><span itemprop="name">我的思考</span></a></span>
 
                 
                 
@@ -447,32 +447,12 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
       
 
       
-        <p>spark作为一个目前非常火的计算框架，很大程度上成为一个数据工程师必须要会的工具了。但是大部分的接触者，感觉入门比较难，尤其spark的内存控制和参数设置等等。我感觉一篇文章肯定说是不完的。这个需要对分布式有一定的基础和spark 的内部机制等。甚至建议撸撸源码。我今天先从简单入手，也是每个开发者都需要做的，就是如何设置spark的参数。</p>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>首先认为</p>
-<pre><code>int main()
-{
-    printf(&quot;我是个段落代码块&quot;);
-    return 0;
-}
-</code></pre><a id="more"></a>
-<h4 id="第史蒂夫"><a href="#第史蒂夫" class="headerlink" title="第史蒂夫"></a>第史蒂夫</h4><pre><code>private def loadEnvironmentArguments(): Unit = {
-  master = Option(master)
-    .orElse(sparkProperties.get(&quot;spark.master&quot;))
-    .orElse(env.get(&quot;MASTER&quot;))
-    .orNull
-  driverExtraClassPath = Option(driverExtraClassPath)
-    .orElse(sparkProperties.get(&quot;spark.driver.extraClassPath&quot;))
-    .orNull
-  driverExtraJavaOptions = Option(driverExtraJavaOptions)
-    .orElse(sparkProperties.get(&quot;spark.driver.extraJavaOptions&quot;))
-    .orNull
-  driverExtraLibraryPath = Option(driverExtraLibraryPath)
-    .orElse(sparkProperties.get(&quot;spark.driver.extraLibraryPath&quot;))
-    .orNull
-  driverMemory = Option(driverMemory)
-    .orElse(sparkProperties.get(&quot;spark.driver.memory&quot;))
-    .orElse(env.get(&quot;SPARK_DRIVER_MEMORY&quot;))
-</code></pre>
+        <h2 id="股票我人生的关键词"><a href="#股票我人生的关键词" class="headerlink" title="股票我人生的关键词"></a>股票我人生的关键词</h2><p>近两年，随着工作内容由撸码到管理，越来越感觉自己的视野和性格是有bug的。因此在拼命的去思考和看书。我今天首先说一下我一个比较鲜明的性格特点，急性子。<br><a id="more"></a><br>这个是一把双刃剑，从我的视角观察，急性子一般都比较积极，做事情很快，如果方法和路线是对的，一般出活也很快。这样的人在中级岗位，可以很好的去推动，掌控性很强。但是我认为，一个人的发展的天花板，取决于他的视野。如果可以从更高级别的视野去向下看待自己，你会发现很多差距。相反，再往更高的级别去对比，如总监/VP/C*O等，我会发现他们层级的另外一些特性，急中有慢。而这种慢才是我缺失的。后面越高级别，需要放手的东西也就越多。同时，他们擅长倾听和思考。等等这些都是我欠缺的，说白了，如果想走上去，我需要学会扬长避短。<br>我不认为性格可以很容易修改，而且性格没有好坏，性格其实是特点。因此我不会修改我积极同时略急一点的性格，我受益于它，但是我务必要刻意去训练自己，尽量规避它在另一面给我工作和生活中带来的不便。我近期会从以下方面去尝试改善：</p>
+<h2 id="1-等3秒，看3遍"><a href="#1-等3秒，看3遍" class="headerlink" title="1 等3秒，看3遍"></a>1 等3秒，看3遍</h2><p>沟通在生活中无处不在，而我经常沟通太强势，甚至去抢话。但是我越来越发现，这样既无效又不礼貌，同时还会忘记沟通的基本目的。沟通本质我认为是获得足够多的信息=》判断=》思考=》最后表达出来=》如果可以请对方复述确认对方可以理解。这样才是一个有效的回路。倾听和思考才是沟通最重要的地方。而我往往囫囵吞枣，只传达自己的目的。因为我要用一些方法去刻意训练，<br>等3秒：等待对方表达完成，停顿3秒，然后表达自己的意见。前期可能有点刻板，但是后面习惯了，倾听和思考才可以更有效。<br>看3遍：急的另外一面就是有时候细节处理不好，甚至最大的毛病写邮件经常有错别字。我总监已经2次纠正我的错别字了。其实往往体现了，细节的重要性。快的同时要保证细节。要不后面细节的疏忽会是成果后面的隐藏bug。后面任何文字类的我会检查3遍，保证准确。</p>
+<h2 id="2-夸赞对方"><a href="#2-夸赞对方" class="headerlink" title="2 夸赞对方"></a>2 夸赞对方</h2><p>其实往往一些适当且不假走心的赞美，往往可以大大提高沟通的效率，尤其是在双方有冲突的情况下。而类似的这样的行为，在我身上很少见。以前甚至是那种带有人格攻击性很强的特征。现在改了一些，但是还是不会夸人。其实会发现，往往情商高的，都会适当的夸人。与此同时，越亲近的人，我们越吝啬我们的赞赏。其实赞赏是一个性价比最高的工具，为啥不能有效的利用起来呢。</p>
+<h2 id="3-慢-慢-慢"><a href="#3-慢-慢-慢" class="headerlink" title="3 慢 慢 慢"></a>3 慢 慢 慢</h2><p>其实总的来说在做事过程中，还是要尽快的高效的保障质量，但是往往跑起来了，需要控制好频率。有时候冲的太猛了，也不一定是好事。前期快速迭代起来是好事，后面发展起来，需要的是多思考，看细节，慢一点。尤其多于我这样的人来说，在一些场景下，需要慢做事，慢思考，慢决定，慢说话。</p>
+<p>也许马上30了，感觉需要有一些沉淀了。人生有时候是就是先做加法再做减法的过程，至于目前的我来说，年轻快速的加起来不是坏事，但是也许下半生要做的事情，就是慢慢的减掉。</p>
+
       
     </div>
 
@@ -521,11 +501,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
       
         <div class="post-tags">
           
-            <a href="/tags/spark/" rel="tag"># spark</a>
-          
-            <a href="/tags/大数据/" rel="tag"># 大数据</a>
-          
-            <a href="/tags/数据开发/" rel="tag"># 数据开发</a>
+            <a href="/tags/姚式鸡汤/" rel="tag"># 姚式鸡汤</a>
           
         </div>
       
@@ -538,8 +514,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/23/english_ef7/" rel="next" title="EF经典句子【level7】">
-                <i class="fa fa-chevron-left"></i> EF经典句子【level7】
+              <a href="/2018/10/12/life_think_stock/" rel="next" title="股票给我上的课">
+                <i class="fa fa-chevron-left"></i> 股票给我上的课
               </a>
             
           </div>
@@ -548,8 +524,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/12/life_think_stock/" rel="prev" title="股票给我上的课">
-                股票给我上的课 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/23/english_ef9/" rel="prev" title="EF经典句子【level9】">
+                EF经典句子【level9】 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -744,7 +720,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第史蒂夫"><span class="nav-number">2.</span> <span class="nav-text">第史蒂夫</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#股票我人生的关键词"><span class="nav-number">1.</span> <span class="nav-text">股票我人生的关键词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-等3秒，看3遍"><span class="nav-number">2.</span> <span class="nav-text">1 等3秒，看3遍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-夸赞对方"><span class="nav-number">3.</span> <span class="nav-text">2 夸赞对方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-慢-慢-慢"><span class="nav-number">4.</span> <span class="nav-text">3 慢 慢 慢</span></a></li></ol></div>
             
 
           </div>
